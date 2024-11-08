@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 services:
   mysql8:
     container_name: mysql8
@@ -28,7 +28,10 @@ services:
       - spring
   msvc-usuarios:
     container_name: msvc-usuarios
-    image: usuarios:latest
+    image: kaibalam/usuarios:latest
+#    build:
+#      context: .
+#      dockerfile: ./msvc-usuarios/Dockerfile
     ports:
       - "8001:8001"
     env_file: ./msvc-usuarios/.env
@@ -39,7 +42,10 @@ services:
     restart: always
   msvc-cursos:
     container_name: msvc-cursos
-    image: cursos:latest
+    image: kaibalam/cursos:latest
+#    build:
+#      context: .
+#      dockerfile: ./msvc-cursos/Dockerfile
     ports:
       - "8002:8002"
     env_file: ./msvc-cursos/.env

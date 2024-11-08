@@ -8,11 +8,15 @@ WORKDIR /app/$MSVC_NAME
 
 COPY ./pom.xml /app
 COPY ./$MSVC_NAME/.mvn ./.mvn
-COPY ./$MSVC_NAME/mvnw .
+COPY ./msvc-cursos/mvnw ./mvnw
 COPY ./$MSVC_NAME/pom.xml .
 
 #RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && -r ./target/
 RUN ./mvnw dependency:go-offline
+# clean up the file
+#RUN sed -i 's/\r$//' ./mvnw
+# run with the SH path
+#RUN /bin/sh ./mvnw dependency:go-offline
 
 COPY ./$MSVC_NAME/src ./src
 
